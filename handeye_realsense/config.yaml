@@ -1,0 +1,15 @@
+aruco_dictionary_name: "DICT_ARUCO_ORIGINAL"
+aruco_marker_side_length: 0.150
+camera_calibration_parameters_filename: "src/handeye_realsense/realsense_info.yaml"
+image_topic: "/camera/camera/color/image_raw"
+aruco_marker_name: "aruco_marker"
+calculated_camera_optical_frame_name: "camera/color/optical_frame"
+marker_data_file_name: "src/handeye_realsense/resource/marker_data_realsense.yaml"
+image_filename: "src/handeye_realsense/resource/marker_pose_realsense_{pose_count}.jpg"
+robot_data_file_name: "src/handeye_realsense/resource/robot_data_realsense.yaml"
+handeye_result_file_name: "src/handeye_realsense/resource/handeye_result_realsense.yaml"
+handeye_result_profile_file_name: "src/handeye_realsense/resource/handeye_result_realsense_profile.yaml"
+
+base_link: "lbr/link_0"
+ee_link: "lbr/link_ee"
+world_frame: "world"
