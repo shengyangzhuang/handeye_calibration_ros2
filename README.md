@@ -76,7 +76,7 @@ This package provides a solution for hand-eye calibration between a robot arm an
 
 ## Example
 
-We provided an example usage with RealSense camera. Please refer here.
+We provided an example usage with RealSense camera. Please refer [**here**](https://github.com/shengyangzhuang/handeye_calibration_ros2/tree/main/handeye_realsense).
 
 ## Contributing
 
