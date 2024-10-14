@@ -2,6 +2,11 @@
 
 This is a ROS2 handeye calibration package for RealSense and Azure Kinect depth camera.
 
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/019c12a0-e329-48bf-8f3a-67fe79dc05a4" alt="sim_positions_1" width="400"/>
+  <img src="https://github.com/user-attachments/assets/4ba7f0e9-954b-41c7-acd0-fe94134deabf" alt="real_positions_1" width="400"/>
+</p>
+
 ## Table of Contents
 1. [Overview](#overview)
 2. [Installation](#installation)
@@ -77,6 +82,8 @@ This package provides a solution for hand-eye calibration between a robot arm an
 ## Example
 
 We provided an example usage with RealSense camera. Please refer [**here**](https://github.com/shengyangzhuang/handeye_calibration_ros2/tree/main/handeye_realsense).
+
+A video of hand-eye calibration process can be seen [**here**](https://youtu.be/EUSxnzzP8qk?si=HIvo1J5uhRv7PXBF), where we demonstrated ensuring calibration accuracy through simulation and replicating the similar poses in real LBR iiwa 7 robot and RealSense depth camera.
 
 ## Contributing
 
