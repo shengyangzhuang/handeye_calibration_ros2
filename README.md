@@ -1,6 +1,18 @@
 # handeye_calibration_ros2
 
-This is a ROS2 handeye calibration package for RealSense and Azure Kinect depth camera.
+This is a ROS2 python handeye calibration package. It is hardware-independent and can be applied to any depth/RGB camera with ROS2 wrappers available.
+
+In summary, it provides functionality includes:
+  1. Sample and save the robot pose and tracking object pose with a simple keyboard click.
+  2. Compute and save the result of the eye-in-hand calibration through the Tsai-Lenz method implemented with OpenCV.
+  3. Publish the hand-eye calibration result and visualize it rviz.
+
+To adapt to your usage, you only need to modify all the information in a single file:
+  1. The camera image topic
+  2. The name of the robot link names
+  3. The camera matrix and distortion coefficient
+
+You can also modify other parameters as per your preference in the information file.
 
 <p align="left">
   <img src="https://github.com/user-attachments/assets/019c12a0-e329-48bf-8f3a-67fe79dc05a4" alt="sim_positions_1" width="400"/>
