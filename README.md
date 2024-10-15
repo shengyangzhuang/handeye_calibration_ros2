@@ -7,7 +7,7 @@ In summary, it provides functionality includes:
   2. Compute and save the result of the eye-in-hand calibration through the Tsai-Lenz method implemented with OpenCV.
   3. Publish the hand-eye calibration result and visualize it rviz.
 
-We also provided a simulation demo where you can add a virtual camera to start using the package. Please find the pkg [here](https://github.com/shengyangzhuang/handeye_calibration_ros2_sim)
+We also provided a simulation demo where you can add a virtual camera to start using the package. Please find the pkg [handeye_calibration_ros2_sim](https://github.com/shengyangzhuang/handeye_calibration_ros2_sim)
 
 To adapt to your usage, you only need to modify all the information in a single file:
   1. The camera image topic
