@@ -99,7 +99,7 @@ We provided an example usage with RealSense camera. Please refer [**here**](http
 
 A video of hand-eye calibration process can be seen [**here**](https://youtu.be/EUSxnzzP8qk?si=HIvo1J5uhRv7PXBF), where we demonstrated ensuring calibration accuracy through simulation and replicating the similar poses in real LBR iiwa 7 robot and RealSense depth camera.
 
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+<a href="https://www.youtube.be/EUSxnzzP8qk?si=WtYsjWQ6QP9oVtu0">
   <img src="https://github.com/user-attachments/assets/0b0aa475-9111-4aeb-84a8-362dcfda1c60" width="500" />
 </a>
 
