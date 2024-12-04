@@ -16,10 +16,33 @@ To adapt to your usage, you only need to modify all the information in a single 
 
 You can also modify other parameters as per your preference in the information file.
 
+**Please feel free to raise an _issue_ as we seek to test the package performance under different hardware software environments. This would help us improve the package and make it truly universal!**
+
 <p align="left">
   <img src="https://github.com/user-attachments/assets/019c12a0-e329-48bf-8f3a-67fe79dc05a4" alt="sim_positions_1" width="400"/>
   <img src="https://github.com/user-attachments/assets/4ba7f0e9-954b-41c7-acd0-fe94134deabf" alt="real_positions_1" width="400"/>
 </p>
+
+### Hardware and Software Tested:
+
+#### Hardware:
+1. **Robot**: KUKA LBR iiwa 7
+2. **Camera**: 
+   - Intel RealSense D415
+   - Microsoft Azure Kinect
+3. **Chessboard**
+4. **ArUco Marker**: 
+   - ID: 365
+   - Side Length: 150mm
+
+#### Software:
+1. **Robot Driver**: lbr_fri_ros2_stack
+2. **Camera Drivers**:
+   - realsense-ros
+   - Azure_Kinect_ROS_Driver
+3. **Operating System**: Ubuntu 22.04
+4. **ROS 2**: Humble
+
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -31,17 +54,6 @@ You can also modify other parameters as per your preference in the information f
 
 ## Overview
 This package provides a solution for hand-eye calibration between a robot arm and a camera in a ROS2 environment. It is designed to support various robotic and vision systems, offering flexibility for different hardware configurations.
-
-## Hardware Software tested:
-1. Robot: KUKA LBR iiwa 7
-2. Camera: Intel RealSense D415,  Microsoft Azure Kinect
-3. Chessboard
-4. Original ArUco    Marker ID: 365    side length: 150mm 
-
-1. Robot driver: lbr_fri_ros2_stack
-2. Camera driver: realsense-ros,  Azure_Kinect_ROS_Driver
-3. Ubuntu 22.04
-4. ROS 2 Humble
 
 ## Installation
 
