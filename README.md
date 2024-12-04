@@ -32,6 +32,17 @@ You can also modify other parameters as per your preference in the information f
 ## Overview
 This package provides a solution for hand-eye calibration between a robot arm and a camera in a ROS2 environment. It is designed to support various robotic and vision systems, offering flexibility for different hardware configurations.
 
+## Hardware Software tested:
+1. Robot: KUKA LBR iiwa 7
+2. Camera: Intel RealSense D415,  Microsoft Azure Kinect
+3. Chessboard
+4. Original ArUco    Marker ID: 365    side length: 150mm 
+
+1. Robot driver: lbr_fri_ros2_stack
+2. Camera driver: realsense-ros,  Azure_Kinect_ROS_Driver
+3. Ubuntu 22.04
+4. ROS 2 Humble
+
 ## Installation
 
 1. Create your workspace and clone this repository:
