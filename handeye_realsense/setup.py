@@ -17,8 +17,8 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='szhuang',
-    maintainer_email='szhuang@todo.todo',
-    description='TODO: Package description',
+    maintainer_email='heyeason@outlook.com',
+    description='ROS2 package for hand-eye calibration',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={

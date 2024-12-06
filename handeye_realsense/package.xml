@@ -3,8 +3,8 @@
 <package format="3">
   <name>handeye_realsense</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="szhuang@todo.todo">szhuang</maintainer>
+  <description>ROS2 package for hand-eye calibration</description>
+  <maintainer email="heyeason@outlook.com">szhuang</maintainer>
   <license>Apache-2.0</license>
 
   <exec_depend>rclpy</exec_depend>
