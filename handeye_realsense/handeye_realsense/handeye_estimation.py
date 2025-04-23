@@ -3,12 +3,13 @@ Copyright © 2024 Shengyang Zhuang. All rights reserved.
 
 Contact: https://shengyangzhuang.github.io/
 """
-#!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
 import cv2
 import numpy as np
 import yaml
+from scipy.spatial.transform import Rotation as R
+import os
 
 class HandEyeCalibrationNode(Node):
     def __init__(self):

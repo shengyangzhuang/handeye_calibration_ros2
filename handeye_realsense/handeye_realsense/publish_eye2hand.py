@@ -7,12 +7,12 @@ import rclpy
 from rclpy.node import Node
 import tf2_ros
 from geometry_msgs.msg import TransformStamped
-import numpy as np
-import yaml
 from tf2_msgs.msg import TFMessage
 from rclpy.qos import QoSProfile, DurabilityPolicy
 from scipy.spatial.transform import Rotation as R
-import tf_transformations
+
+import numpy as np
+import yaml
 
 # Create a QoS profile for subscribing to /tf_static
 qos_profile = QoSProfile(depth=10, durability=DurabilityPolicy.TRANSIENT_LOCAL)
@@ -46,10 +46,13 @@ class TransformPublisher(Node):
 
         self.translation = np.array(hand_eye_data['translation']).reshape((3, 1))
         self.rotation = np.array(hand_eye_data['rotation']).reshape((3, 3))
-        self.handeye_quaternion = tf_transformations.quaternion_from_matrix(T)
+
+        r = R.from_matrix(self.rotation)
+        self.handeye_quaternion = r.as_quat() #xyzw
 
         print(f'rotation: {self.rotation}')
         print(f'translation: {self.translation}')
+        print(f'handeye_quaternion: {self.handeye_quaternion}')
 
         timer_period = 0.1  # seconds
         self.timer = self.create_timer(timer_period, self.publish_handeye_transform)
@@ -98,29 +101,6 @@ class TransformPublisher(Node):
                 
         return T
 
-    def publish_transform(self, translation_vector, rotation_matrix, frame_id, child_frame_id):
-        t = TransformStamped()
-        t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = frame_id
-        t.child_frame_id = child_frame_id
-        # Set the translation
-        t.transform.translation.x = translation_vector[0]
-        t.transform.translation.y = translation_vector[1]
-        t.transform.translation.z = translation_vector[2]
-
-        # Convert the rotation matrix to a quaternion
-        transformation_matrix = np.eye(4)
-        transformation_matrix[:3, :3] = rotation_matrix
-        transformation_matrix[:3, 3] = translation_vector
-        quaternion = tf_transformations.quaternion_from_matrix(transformation_matrix)
-
-        t.transform.rotation.x = quaternion[0]
-        t.transform.rotation.y = quaternion[1]
-        t.transform.rotation.z = quaternion[2]
-        t.transform.rotation.w = quaternion[3]
-
-        self.tf_broadcaster.sendTransform(t)
-
     def publish_handeye_transform(self):
         transform_msg = TransformStamped()
         transform_msg.header.stamp = self.get_clock().now().to_msg()
@@ -135,12 +115,6 @@ class TransformPublisher(Node):
         transform_msg.transform.rotation.w = self.handeye_quaternion[3]
 
         self.tf_broadcaster.sendTransform(transform_msg)
-
-        # Send the transform from camera_sim to world
-        Tc = self.get_full_transformation_matrix()
-        rc = Tc[:3, :3]
-        tc = Tc[:3, 3]
-        self.publish_transform(tc, rc, self.world_frame, self.ee_link)    
 
 
 def main(args=None):

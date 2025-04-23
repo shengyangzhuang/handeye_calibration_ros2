@@ -5,20 +5,16 @@ Contact: https://shengyangzhuang.github.io/
 """
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, DurabilityPolicy
 from tf2_msgs.msg import TFMessage
-from sensor_msgs.msg import JointState
+from scipy.spatial.transform import Rotation as R
+from rclpy.qos import QoSProfile, DurabilityPolicy
 from std_msgs.msg import String
 
-import numpy as np
-from scipy.spatial.transform import Rotation as R
 import yaml
-import sys
-import select
+import numpy as np
 
 # Create a QoS profile for subscribing to /tf_static
 qos_profile = QoSProfile(depth=10, durability=DurabilityPolicy.TRANSIENT_LOCAL)
-
 
 class RobotTransformNode(Node):
     def __init__(self):

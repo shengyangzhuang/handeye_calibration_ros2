@@ -5,17 +5,17 @@ Contact: https://shengyangzhuang.github.io/
 """
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, DurabilityPolicy
-from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import TransformStamped
 from tf2_ros import TransformBroadcaster, StaticTransformBroadcaster
-import tf_transformations
+import transforms3d as tf_transformations
+from scipy.spatial.transform import Rotation as R
+from rclpy.qos import QoSProfile, DurabilityPolicy
+from cv_bridge import CvBridge
 from std_msgs.msg import String
 
 import cv2
 import numpy as np
-from scipy.spatial.transform import Rotation as R
 import yaml
 
 # Create a QoS profile for subscribing to /tf_static
@@ -91,30 +91,6 @@ class ArucoNode(Node):
         """ Convert a quaternion into a full three-dimensional rotation matrix. """
         return R.from_quat([x, y, z, w]).as_matrix()    
 
-
-    def publish_transform(self, translation_vector, rotation_matrix, frame_id, child_frame_id):
-        t = TransformStamped()
-        t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = frame_id
-        t.child_frame_id = child_frame_id
-        # Set the translation
-        t.transform.translation.x = translation_vector[0]
-        t.transform.translation.y = translation_vector[1]
-        t.transform.translation.z = translation_vector[2]
-
-        # Convert the rotation matrix to a quaternion
-        transformation_matrix = np.eye(4)
-        transformation_matrix[:3, :3] = rotation_matrix
-        transformation_matrix[:3, 3] = translation_vector
-        quaternion = tf_transformations.quaternion_from_matrix(transformation_matrix)
-
-        t.transform.rotation.x = quaternion[0]
-        t.transform.rotation.y = quaternion[1]
-        t.transform.rotation.z = quaternion[2]
-        t.transform.rotation.w = quaternion[3]
-
-        self.tfbroadcaster.sendTransform(t)
-
     def listener_callback(self, data):
         current_frame = self.bridge.imgmsg_to_cv2(data)
         corners, marker_ids, rejected = cv2.aruco.detectMarkers(current_frame, self.this_aruco_dictionary, parameters=self.this_aruco_parameters)
@@ -127,6 +103,7 @@ class ArucoNode(Node):
                 # Create the coordinate transform
                 t_marker_to_camera = TransformStamped()
                 t_marker_to_camera.header.stamp = self.get_clock().now().to_msg()
+
                 t_marker_to_camera.header.frame_id = self.calculated_camera_optical_frame_name
                 t_marker_to_camera.child_frame_id = self.aruco_marker_name
 
@@ -134,7 +111,6 @@ class ArucoNode(Node):
                 t_marker_to_camera.transform.translation.x = tvecs[i][0][0]
                 t_marker_to_camera.transform.translation.y = tvecs[i][0][1]
                 t_marker_to_camera.transform.translation.z = tvecs[i][0][2]
-
 
                 # Store the rotation information
                 rotation_matrix = cv2.Rodrigues(rvecs[i][0])[0]
@@ -194,7 +170,7 @@ class ArucoNode(Node):
         self.get_logger().info(f"Pose {self.pose_count}:")
         self.get_logger().info("Rotation Matrix:\n" + str(R_mat))
         self.get_logger().info("Translation Vector:\n" + str(tvec[0]))
-        self.get_logger().info(f'Transformation for Pose {self.pose_count} appended to marker_data_ak.yaml')
+        self.get_logger().info(f'Transformation for Pose {self.pose_count} appended to {self.marker_data_file_name}')
 
     def save_image(self, frame):
         image_filename = self.image_filename.format(pose_count=self.pose_count)
