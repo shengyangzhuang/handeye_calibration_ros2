@@ -131,7 +131,7 @@ class ArucoNode(Node):
 
         # Create a named window that can be resized
         cv2.namedWindow("camera", cv2.WINDOW_NORMAL)
-        # Resize the window to the desired size, e.g., 800x600 pixels
+        # Resize the window to the desired size, e.g., 700x500 pixels
         cv2.resizeWindow("camera", 700, 500)
 
         cv2.imshow("camera", current_frame)

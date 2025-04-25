@@ -26,7 +26,7 @@ You can also modify other parameters as per your preference in the information f
 ### Hardware and Software Tested:
 
 #### Hardware:
-1. **Robot**: KUKA LBR iiwa 7
+1. **Robot**: KUKA LBR iiwa 7, AgileX Robotics PiPER
 2. **Camera**: 
    - Intel RealSense D415
    - Microsoft Azure Kinect

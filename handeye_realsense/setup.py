@@ -27,7 +27,6 @@ setup(
             'handeye = handeye_realsense.handeye_estimation:main',
             'aruco = handeye_realsense.aruco_estimation:main',
             'eye2hand = handeye_realsense.publish_eye2hand:main',
-            'joint_positions = handeye_realsense.joint_positions:main',
         ],
     },
 )
