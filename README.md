@@ -28,7 +28,7 @@ You can also modify other parameters as per your preference in the information f
 #### Hardware:
 1. **Robot**: KUKA LBR iiwa 7, AgileX Robotics PiPER
 2. **Camera**: 
-   - Intel RealSense D415
+   - Intel RealSense D415, D435
    - Microsoft Azure Kinect
 3. **Chessboard**
 4. **ArUco Marker**: 
